@@ -710,7 +710,7 @@ class PullToRefreshListView extends Component {
         let {pullDownStayDistance} = this.props
         let headerHeight
         if (!this._beginTimeStamp) {
-            headerHeight = pullDownStayDistance
+            headerHeight = 0
             this._beginTimeStamp = timestamp
         }
         else {
