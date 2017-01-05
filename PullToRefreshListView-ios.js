@@ -78,6 +78,8 @@ class PullToRefreshListView extends Component {
         stickyHeaderIndices: [],
         pageSize: 1,
         scrollRenderAheadDistance: 1000,
+
+        resetLoadMoreState: true
     }
 
     static propTypes = {
@@ -96,6 +98,8 @@ class PullToRefreshListView extends Component {
         autoLoadMore: PropTypes.bool,
         onRefresh: PropTypes.func,
         onLoadMore: PropTypes.func,
+
+        resetLoadMoreState: PropTypes.bool
     }
 
     constructor (props) {
@@ -748,7 +752,7 @@ class PullToRefreshListView extends Component {
 
     _resetHeaderLayout = (timestamp) => {
         let {loaded_all, load_more_none} = viewState
-        let {pullDownStayDistance} = this.props
+        let {pullDownStayDistance, resetLoadMoreState} = this.props
         let headerHeight
         if (!this._beginTimeStamp) {
             headerHeight = pullDownStayDistance
@@ -813,7 +817,7 @@ class PullToRefreshListView extends Component {
             this._setPaddingBlank()
 
             //reset loadMoreState to load_more_none
-            if (this._loadMoreState == loaded_all) {
+            if (this._loadMoreState == loaded_all && resetLoadMoreState) {
                 this._loadMoreState = load_more_none
                 this._footer.setState({
                     pullState: this._loadMoreState,
