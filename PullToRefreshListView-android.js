@@ -89,7 +89,9 @@ class PullToRefreshListView extends Component {
         floatSectionHeaderWidth: deviceWidth,
         pageTop: 0,
 
-        resetLoadMoreState: true
+        resetLoadMoreState: true,
+        onSwipe: () => {},
+        onSwipeOut: () => {}
     }
 
     static propTypes = {
@@ -114,7 +116,9 @@ class PullToRefreshListView extends Component {
         onRefresh: PropTypes.func,
         onLoadMore: PropTypes.func,
 
-        resetLoadMoreState: PropTypes.bool
+        resetLoadMoreState: PropTypes.bool,
+        onSwipe: PropTypes.func,
+        onSwipeOut: PropTypes.func
     }
 
     constructor (props) {
@@ -524,6 +528,8 @@ class PullToRefreshListView extends Component {
                 this._scrollView.scrollTo({ y: this._touchingScrollY, animated: false, })
             }
         }
+
+        this.props.onSwipe()
     }
 
     _onRefresh = () => {
@@ -576,6 +582,8 @@ class PullToRefreshListView extends Component {
                 this._refreshBackAnimationFrame = this.requestAnimationFrame(this._resetLoadMoreScrollTop)
             }
         }
+
+        this.props.onSwipeOut()
     }
 
     _setPaddingBlank = (paddingDisabled) => {
