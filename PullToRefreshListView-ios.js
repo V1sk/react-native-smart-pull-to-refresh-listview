@@ -218,9 +218,9 @@ class PullToRefreshListView extends Component {
     }
 
     beginRefresh = (bounceDisabled) => {
-        this._scrollView.setNativeProps({
-            scrollEnabled: false
-        })
+        // this._scrollView.setNativeProps({
+        //     scrollEnabled: false
+        // })
         //this.requestAnimationFrame(this._resetReverseHeaderLayout)
         if (!bounceDisabled) {
             this.requestAnimationFrame(this._resetReverseHeaderLayout)
