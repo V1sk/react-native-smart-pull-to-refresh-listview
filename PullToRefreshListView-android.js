@@ -115,6 +115,7 @@ class PullToRefreshListView extends Component {
         autoLoadMore: PropTypes.bool,
         onRefresh: PropTypes.func,
         onLoadMore: PropTypes.func,
+        onScrollY: PropTypes.func,
 
         resetLoadMoreState: PropTypes.bool,
         onSwipe: PropTypes.func,
@@ -675,6 +676,7 @@ class PullToRefreshListView extends Component {
         let {refreshing, load_more_none, loading_more, } = viewState
         let {autoLoadMore, renderSectionHeader, listSectionProps, pageTop, } = this.props
         this._scrollY = e.nativeEvent.contentOffset.y
+        this.props.onScrollY && this.props.onScrollY(this._scrollY);
 
         /**
          * (occurs on react-native 0.32, and maybe also occurs on react-native 0.30+)Android ScrollView scrolls to bottom may occur scrollTop larger than it should be

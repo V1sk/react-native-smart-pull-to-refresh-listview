@@ -98,6 +98,7 @@ class PullToRefreshListView extends Component {
         autoLoadMore: PropTypes.bool,
         onRefresh: PropTypes.func,
         onLoadMore: PropTypes.func,
+        onScrollY: PropTypes.func,
 
         resetLoadMoreState: PropTypes.bool
     }
@@ -531,6 +532,7 @@ class PullToRefreshListView extends Component {
             load_more_none, load_more_idle, will_load_more, loading_more, loaded_all,} = viewState
         let {pullUpDistance, pullDownDistance, autoLoadMore, enabledPullUp, enabledPullDown, } = this.props
         this._scrollY = e.nativeEvent.contentOffset.y
+        this.props.onScrollY && this.props.onScrollY(this._scrollY);
         //console.log(`this._scrollY = ${this._scrollY}`)
 
         if (this._scrollY < this._lastScrollY) {
