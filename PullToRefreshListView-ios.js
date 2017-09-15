@@ -181,6 +181,7 @@ class PullToRefreshListView extends Component {
                     onContentSizeChange={this._onContentSizeChange}
                     onResponderGrant={this._onResponderGrant}
                     onScroll={this._onScroll}
+                    onScrollEndDrag={this._onScrollEndDrag}
                     onResponderRelease={this._onResponderRelease}
                     onChangeVisibleRows={this._onChangeVisibleRows}
                     listItemProps={this.props.listItemProps}
