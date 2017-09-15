@@ -379,7 +379,6 @@ class PullToRefreshListView extends Component {
     }
 
     _onScrollEndDrag(event) {
-        console.log('_onScrollEndDrag',event)
         this.props.onScrollY && this.props.onScrollY(this._scrollY);
     };
 
