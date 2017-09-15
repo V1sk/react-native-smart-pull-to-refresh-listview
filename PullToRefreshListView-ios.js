@@ -165,7 +165,7 @@ class PullToRefreshListView extends Component {
                     onContentSizeChange={this._onContentSizeChange}
                     onResponderGrant={this._onResponderGrant}
                     onScroll={this._onScroll}
-                    onMomentumScrollEnd={this._onMomentumScrollEnd}
+                    onScrollEndDrag={this._onScrollEndDrag}
                     onResponderRelease={this._onResponderRelease}>
                     {this._renderHeader()}
                     {this.props.children}
@@ -377,7 +377,7 @@ class PullToRefreshListView extends Component {
         }
     }
 
-    _onMomentumScrollEnd = () => {
+    _onScrollEndDrag = () => {
         this.props.onScrollY && this.props.onScrollY(this._scrollY);
     };
 
@@ -540,7 +540,7 @@ class PullToRefreshListView extends Component {
         } = viewState
         let {pullUpDistance, pullDownDistance, autoLoadMore, enabledPullUp, enabledPullDown,} = this.props
         this._scrollY = e.nativeEvent.contentOffset.y
-        this.props.onScrollY && this.props.onScrollY(this._scrollY);
+        // this.props.onScrollY && this.props.onScrollY(this._scrollY);
 
         if (this._scrollY < this._lastScrollY) {
             if (this._refreshState == refresh_none && !this._refreshBackAnimating && !this._afterRefreshBacked) {
