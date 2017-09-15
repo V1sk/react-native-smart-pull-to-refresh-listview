@@ -165,6 +165,7 @@ class PullToRefreshListView extends Component {
                     onContentSizeChange={this._onContentSizeChange}
                     onResponderGrant={this._onResponderGrant}
                     onScroll={this._onScroll}
+                    onMomentumScrollEnd={this._onMomentumScrollEnd}
                     onResponderRelease={this._onResponderRelease}>
                     {this._renderHeader()}
                     {this.props.children}
@@ -375,6 +376,10 @@ class PullToRefreshListView extends Component {
         }
     }
 
+    _onMomentumScrollEnd = () => {
+        this.props.onScrollY && this.props.onScrollY(this._scrollY);
+    };
+
     _setPaddingBlank = (paddingDisabled) => {
         let innerViewRef = this._scrollView.refs.InnerScrollView || this._scrollView._innerViewRef || this._innerScrollView.refs.InnerScrollView || this._innerScrollView._innerViewRef
         innerViewRef.measure((ox, oy, width, height, px, py) => {
@@ -532,8 +537,6 @@ class PullToRefreshListView extends Component {
             load_more_none, load_more_idle, will_load_more, loading_more, loaded_all,} = viewState
         let {pullUpDistance, pullDownDistance, autoLoadMore, enabledPullUp, enabledPullDown, } = this.props
         this._scrollY = e.nativeEvent.contentOffset.y
-        this.props.onScrollY && this.props.onScrollY(this._scrollY);
-        //console.log(`this._scrollY = ${this._scrollY}`)
 
         if (this._scrollY < this._lastScrollY) {
             if (this._refreshState == refresh_none && !this._refreshBackAnimating && !this._afterRefreshBacked) {
