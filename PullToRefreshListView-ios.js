@@ -541,7 +541,9 @@ class PullToRefreshListView extends Component {
         } = viewState
         let {pullUpDistance, pullDownDistance, autoLoadMore, enabledPullUp, enabledPullDown,} = this.props
         this._scrollY = e.nativeEvent.contentOffset.y
-        // this.props.onScrollY && this.props.onScrollY(this._scrollY);
+        if(this._scrollY===0){
+            this.props.onScrollY && this.props.onScrollY(this._scrollY);
+        }
 
         if (this._scrollY < this._lastScrollY) {
             if (this._refreshState == refresh_none && !this._refreshBackAnimating && !this._afterRefreshBacked) {

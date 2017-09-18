@@ -687,6 +687,9 @@ class PullToRefreshListView extends Component {
         let {refreshing, load_more_none, loading_more,} = viewState
         let {autoLoadMore, renderSectionHeader, listSectionProps, pageTop,} = this.props
         this._scrollY = e.nativeEvent.contentOffset.y
+        if(this._scrollY===0){
+            this.props.onScrollY && this.props.onScrollY(this._scrollY);
+        }
         // this.props.onScrollY&&this.props.onScrollY(this._scrollY);
 
         /**
